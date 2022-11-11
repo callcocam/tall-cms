@@ -1,0 +1,27 @@
+{
+    "name": "callcocam/tall-cms",
+    "type": "package",
+    "description": "The packages auto slug laravel model.",
+    "keywords": ["framework", "laravel", "livewire", "alpinejs", "tailwindcss"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "callcocam/tall-sluggable": "dev-main",
+        "callcocam/tall-schema": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tall\\Cms\\": "src"
+        }
+    },
+    
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tall\\Cms\\Providers\\CmsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
