@@ -58,20 +58,23 @@ Route::prefix('admin')
     }
 
 
-    $manifests =  app(LivewireComponentsFinder::class)->load();
+    if(method_exists(LivewireComponentsFinder::class, 'load')){
 
-    if($manifests){
+        $manifests =  app(LivewireComponentsFinder::class)->load();
 
-        foreach($manifests as $manifest){
-
-            if (method_exists($manifest, 'route')) {
-
-                app($manifest)->route();
-
+        if($manifests){
+    
+            foreach($manifests as $manifest){
+    
+                if (method_exists($manifest, 'route')) {
+    
+                    app($manifest)->route();
+    
+                }
+    
             }
-
+    
         }
-
     }
 
 });
