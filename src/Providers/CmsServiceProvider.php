@@ -25,8 +25,10 @@ class CmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(RouteServiceProvider::class);
-        $this->registerComponentAutoDiscovery();
+        if (class_exists(Livewire::class)) {
+            $this->app->register(RouteServiceProvider::class);
+            $this->registerComponentAutoDiscovery();
+        }
        
     }
 
@@ -47,30 +49,31 @@ class CmsServiceProvider extends ServiceProvider
         $this->registerCommands();
         $this->publishViews();
 
-         
-        Livewire::component( 'tall::admin.cms.makes.list-component', \Tall\Cms\Http\Livewire\Admin\Makes\ListComponent::class);
-        Livewire::component( 'tall::admin.cms.makes.create-component', \Tall\Cms\Http\Livewire\Admin\Makes\CreateComponent::class);
-        
-        
-        Livewire::component( 'tall::admin.cms.make.list-component', \Tall\Cms\Http\Livewire\Admin\Make\ListComponent::class);
-        Livewire::component( 'tall::admin.cms.make.create-component', \Tall\Cms\Http\Livewire\Admin\Make\CreateComponent::class);
-        Livewire::component( 'tall::admin.cms.make.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\EditComponent::class);
-        Livewire::component( 'tall::admin.cms.make.show-component', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class);
-        Livewire::component( 'tall::admin.cms.make.delete-component', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class);
-        
-        Livewire::component( 'tall::admin.cms.make.field.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\CreateComponent::class);
-        Livewire::component( 'tall::admin.cms.make.field.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\EditComponent::class);
-        
-        Livewire::component( 'tall::admin.cms.make.field.attributes.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Attributes\CreateComponent::class);
-        Livewire::component( 'tall::admin.cms.make.field.attributes.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Attributes\EditComponent::class);
-        
-        Livewire::component( 'tall::admin.cms.make.field.fk.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Fk\CreateComponent::class);
-        Livewire::component( 'tall::admin.cms.make.field.fk.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Fk\EditComponent::class);
-      
+        if (class_exists(Livewire::class)) {
+            Livewire::component( 'tall::admin.cms.makes.list-component', \Tall\Cms\Http\Livewire\Admin\Makes\ListComponent::class);
+            Livewire::component( 'tall::admin.cms.makes.create-component', \Tall\Cms\Http\Livewire\Admin\Makes\CreateComponent::class);
+            
+            
+            Livewire::component( 'tall::admin.cms.make.list-component', \Tall\Cms\Http\Livewire\Admin\Make\ListComponent::class);
+            Livewire::component( 'tall::admin.cms.make.create-component', \Tall\Cms\Http\Livewire\Admin\Make\CreateComponent::class);
+            Livewire::component( 'tall::admin.cms.make.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\EditComponent::class);
+            Livewire::component( 'tall::admin.cms.make.show-component', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class);
+            Livewire::component( 'tall::admin.cms.make.delete-component', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class);
+            
+            Livewire::component( 'tall::admin.cms.make.field.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\CreateComponent::class);
+            Livewire::component( 'tall::admin.cms.make.field.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\EditComponent::class);
+            
+            Livewire::component( 'tall::admin.cms.make.field.attributes.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Attributes\CreateComponent::class);
+            Livewire::component( 'tall::admin.cms.make.field.attributes.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Attributes\EditComponent::class);
+            
+            Livewire::component( 'tall::admin.cms.make.field.fk.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Fk\CreateComponent::class);
+            Livewire::component( 'tall::admin.cms.make.field.fk.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Fk\EditComponent::class);
+        }
         
     }
     protected function registerComponentAutoDiscovery()
     {
+        if(!$this->app->has('livewire')) return;
         // Rather than forcing users to register each individual component,
         // we will auto-detect the component's class based on its kebab-cased
         // alias. For instance: 'examples.foo' => App\Http\Livewire\Examples\Foo
