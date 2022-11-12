@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Make;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Livewire\LivewireComponentsFinder;
+use Tall\Cms\Contracts\Make;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ Route::prefix('admin')
     });
 
 
-    $makes = Make::query()->where('status', 'published')
+    $makes = app(Make::class)->query()->where('status', 'published')
     ->whereNotNull('route')->get();
     
     if($makes){   

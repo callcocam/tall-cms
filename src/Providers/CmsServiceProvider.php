@@ -15,6 +15,24 @@ use Tall\Cms\Console\Commands\TallMakeCommand;
 use Tall\Cms\LivewireComponentsFinder as LivewireLivewireComponentsFinder;
 use Tall\Theme\Providers\ThemeServiceProvider;
 use Livewire\Livewire;
+use Tall\Cms\Contracts\Make;
+use Tall\Cms\Contracts\MakeField;
+use Tall\Cms\Contracts\MakeFieldAttribute;
+use Tall\Cms\Contracts\MakeFieldDb;
+use Tall\Cms\Contracts\MakeFieldFk;
+use Tall\Cms\Contracts\MakeFieldOption;
+use Tall\Cms\Contracts\MakeFieldType;
+use Tall\Cms\Contracts\MakePost;
+use Tall\Cms\Contracts\MakePostItem;
+use Tall\Cms\Models\Make as ModelsMake;
+use Tall\Cms\Models\MakeField as ModelsMakeField;
+use Tall\Cms\Models\MakeFieldAttribute as ModelsMakeFieldAttribute;
+use Tall\Cms\Models\MakeFieldDb as ModelsMakeFieldDb;
+use Tall\Cms\Models\MakeFieldFk as ModelsMakeFieldFk;
+use Tall\Cms\Models\MakeFieldOption as ModelsMakeFieldOption;
+use Tall\Cms\Models\MakeFieldType as ModelsMakeFieldType;
+use Tall\Cms\Models\MakePost as ModelsMakePost;
+use Tall\Cms\Models\MakePostItem as ModelsMakePostItem;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -25,6 +43,68 @@ class CmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        if(class_exists('App\Models\Make')){
+            $this->app->bind(Make::class, 'App\Models\Make');
+        }
+        else{
+                $this->app->bind(Make::class, ModelsMake::class);
+        }
+        if(class_exists('App\Models\MakeField')){
+            $this->app->bind(MakeField::class, 'App\Models\MakeField');
+        }
+        else{
+                $this->app->bind(MakeField::class, ModelsMakeField::class);
+        }
+
+        if(class_exists('App\Models\MakeFieldAttribute')){
+            $this->app->bind(MakeFieldAttribute::class, 'App\Models\MakeFieldAttribute');
+        }
+        else{
+                $this->app->bind(MakeFieldAttribute::class, ModelsMakeFieldAttribute::class);
+        }
+
+        if(class_exists('App\Models\MakeFieldDb')){
+            $this->app->bind(MakeFieldDb::class, 'App\Models\MakeFieldDb');
+        }
+        else{
+                $this->app->bind(MakeFieldDb::class, ModelsMakeFieldDb::class);
+        }
+
+        if(class_exists('App\Models\MakeFieldFk')){
+            $this->app->bind(MakeFieldFk::class, 'App\Models\MakeFieldFk');
+        }
+        else{
+                $this->app->bind(MakeFieldFk::class, ModelsMakeFieldFk::class);
+        }
+
+        if(class_exists('App\Models\MakeFieldOption')){
+            $this->app->bind(MakeFieldOption::class, 'App\Models\MakeFieldOption');
+        }
+        else{
+                $this->app->bind(MakeFieldOption::class, ModelsMakeFieldOption::class);
+        }
+
+        if(class_exists('App\Models\MakeFieldType')){
+            $this->app->bind(MakeFieldType::class, 'App\Models\MakeFieldType');
+        }
+        else{
+                $this->app->bind(MakeFieldType::class, ModelsMakeFieldType::class);
+        }
+
+        if(class_exists('App\Models\MakePost')){
+            $this->app->bind(MakePost::class, 'App\Models\MakePost');
+        }
+        else{
+                $this->app->bind(MakePost::class, ModelsMakePost::class);
+        }
+
+        if(class_exists('App\Models\MakePostItem')){
+            $this->app->bind(MakePostItem::class, 'App\Models\MakePostItem');
+        }
+        else{
+                $this->app->bind(MakePostItem::class, ModelsMakePostItem::class);
+        }
+
         if (class_exists(Livewire::class)) {
             $this->app->register(RouteServiceProvider::class);
             $this->registerComponentAutoDiscovery();
