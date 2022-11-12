@@ -1,7 +1,7 @@
 {
     "name": "callcocam/tall-cms",
     "type": "package",
-    "description": "The packages auto slug laravel model.",
+    "description": "The packages cms laravel model.",
     "keywords": ["framework", "laravel", "livewire", "alpinejs", "tailwindcss"],
     "license": "MIT",
     "require": {

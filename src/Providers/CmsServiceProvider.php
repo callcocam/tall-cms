@@ -41,6 +41,9 @@ class CmsServiceProvider extends ServiceProvider
             __DIR__ . '/../../config/tall-cms.php','tall-cms'
         );
 
+        
+        include_once __DIR__."/../../helper.php";
+
         $this->registerCommands();
         $this->publishViews();
 
