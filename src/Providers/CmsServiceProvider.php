@@ -48,7 +48,7 @@ class CmsServiceProvider extends ServiceProvider
 
         $this->registerCommands();
         $this->publishViews();
-
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         if (class_exists(Livewire::class)) {
             Livewire::component( 'tall::admin.cms.makes.list-component', \Tall\Cms\Http\Livewire\Admin\Makes\ListComponent::class);
             Livewire::component( 'tall::admin.cms.makes.create-component', \Tall\Cms\Http\Livewire\Admin\Makes\CreateComponent::class);
