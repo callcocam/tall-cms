@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('route', 255)->nullable();
             $table->string('url', 255)->nullable();
             $table->string('component', 255)->nullable();
+            $table->string('component_name', 255)->nullable();
             $table->string('view', 255)->default('makes')->nullable();
             $table->text('description')->nullable();
             $table->integer('ordering')->nullable()->default('0');
