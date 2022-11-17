@@ -7,8 +7,6 @@
 
 namespace Tall\Cms\Http\Livewire\Admin\Makes;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Tall\Orm\Http\Livewire\FormComponent;
 use Tall\Cms\Models\Make;
 use Tall\Cms\Models\MakePost;
@@ -16,15 +14,12 @@ use Tall\Form\Fields\Field;
 
 class CreateComponent extends FormComponent
 {
-    use AuthorizesRequests;
 
     public $title = "Cadastrar";
     public $path;
 
-    public function mount($path,MakePost $model)
+    public function mount(MakePost $model)
     {
-        $this->authorize(Route::currentRouteName());
-        $this->path = $path;
         $this->setConfigProperties(Make::query()->where('url', $this->path)->first());   
         $this->setFormProperties($model);   
     }

@@ -27,14 +27,15 @@ Route::prefix('admin')
     Route::get('', \Tall\Cms\Http\Livewire\Admin\DashboardComponent::class)->name('admin');
     Route::prefix('makes')->group(function () {
         Route::get('/', \Tall\Cms\Http\Livewire\Admin\Make\ListComponent::class)->name('admin.makes');
-        Route::get('/cadastrar', \Tall\Cms\Http\Livewire\Admin\Make\CreateComponent::class)->name('admin.make.create');
-        Route::get('/{model}/editar', \Tall\Cms\Http\Livewire\Admin\Make\EditComponent::class)->name('admin.make.edit');
-        Route::get('/{model}/visualizar', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class)->name('admin.make.show');
-        Route::get('/{model}/excluir', \Tall\Cms\Http\Livewire\Admin\Make\DeleteComponent::class)->name('admin.make.delete');
+        Route::get('/cadastrar', \Tall\Cms\Http\Livewire\Admin\Make\CreateComponent::class)->name('admin.makes.create');
+        Route::get('/{model}/editar', \Tall\Cms\Http\Livewire\Admin\Make\EditComponent::class)->name('admin.makes.edit');
+        Route::get('/{model}/visualizar', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class)->name('admin.makes.show');
+        Route::get('/{model}/excluir', \Tall\Cms\Http\Livewire\Admin\Make\DeleteComponent::class)->name('admin.makes.delete');
     });
 
 
-    $makes = app(Make::class)->query()->where('status', 'published')
+    $makes = app(Make::class)->query()
+    // ->where('status_id', 'published')
     ->whereNotNull('route')->get();
     
     if($makes){   

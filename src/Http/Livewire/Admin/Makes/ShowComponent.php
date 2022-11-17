@@ -7,22 +7,16 @@
 
 namespace Tall\Cms\Http\Livewire\Admin\Makes;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Tall\Cms\Models\MakePost;
 use Tall\Orm\Http\Livewire\FormComponent;
-use Tall\Theme\Models\Make;
 
 class ShowComponent extends FormComponent
 {
-    use AuthorizesRequests;
 
     public $title = "Visualizar";
-    public $path;
 
-    public function mount($path, Make $model)
+    public function mount(MakePost $model)
     {
-        $this->authorize(Route::currentRouteName());
-        $this->path = $path;
         $this->setFormProperties($model);
     }
    

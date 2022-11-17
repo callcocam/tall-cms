@@ -18,29 +18,29 @@ class MakeFieldFk extends AbstractModel
 
     public function make()
     {
-        if(class_exists('\\App\\Model\\Make')){
-            return $this->belongsTo('\\App\\Model\\Make');
+        if(class_exists('\\App\\Models\\Make')){
+            return $this->belongsTo('\\App\\Models\\Make');
         }
         return $this->belongsTo(Make::class);
     }
     public function make_model()
     {
-        if(class_exists('\\App\\Model\\Make')){
-            return $this->belongsTo('\\App\\Model\\Make','make_model_id');
+        if(class_exists('\\App\\Models\\Make')){
+            return $this->belongsTo('\\App\\Models\\Make','make_model_id');
         }
         return $this->belongsTo(Make::class,'make_model_id');
     }
     public function make_field_foreign()
     {
-        if(class_exists('\\App\\Model\\MakeField')){
-            return $this->belongsTo('\\App\\Model\\MakeField', 'foreign_key_id');
+        if(class_exists('\\App\\Models\\MakeField')){
+            return $this->belongsTo('\\App\\Models\\MakeField', 'foreign_key_id');
         }
         return $this->belongsTo(MakeField::class, 'foreign_key_id');
     }
     public function make_field_local()
     {
-        if(class_exists('\\App\\Model\\MakeField')){
-            return $this->belongsTo('\\App\\Model\\MakeField','local_key_id');
+        if(class_exists('\\App\\Models\\MakeField')){
+            return $this->belongsTo('\\App\\Models\\MakeField','local_key_id');
         }
         return $this->belongsTo(MakeField::class,'local_key_id');
     }

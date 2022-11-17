@@ -8,7 +8,6 @@
 namespace Tall\Cms\Http\Livewire\Admin\Makes;
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Tall\Orm\Http\Livewire\TableComponent;
 use Tall\Cms\Models\Make;
 use Tall\Cms\Models\MakePost;
@@ -17,13 +16,10 @@ use Illuminate\Support\{Str ,Arr};
 
 class ListComponent extends TableComponent
 {
-    use AuthorizesRequests;
    
-    public $path;
 
     public function mount()
     {
-        $this->authorize(Route::currentRouteName());
         // $this->path = $path;
         $this->setFormProperties(Make::query()->whereIn('url', Route::current()->parameters)->first());
     }

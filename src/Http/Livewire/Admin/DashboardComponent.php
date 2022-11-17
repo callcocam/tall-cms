@@ -6,7 +6,6 @@
 */
 namespace Tall\Cms\Http\Livewire\Admin;
 
-use Livewire\Component;
 use Tall\Cms\Http\Livewire\AbstractComponent;
 
 class DashboardComponent extends AbstractComponent

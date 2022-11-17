@@ -17,8 +17,8 @@ class MakePostItem extends AbstractModel
     
     public function make_post()
     {
-        if(class_exists('\\App\\Model\\MakePost')){
-            return $this->belongsTo('\\App\\Model\\MakePost');
+        if(class_exists('\\App\\Models\\MakePost')){
+            return $this->belongsTo('\\App\\Models\\MakePost');
         }
         return $this->belongsTo(MakePost::class);
     }

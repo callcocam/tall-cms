@@ -20,8 +20,8 @@ class MakePost extends AbstractModel
 
     public function make_post_items()
     {
-        if(class_exists('\\App\\Model\\MakePostItem')){
-            return $this->hasMany('\\App\\Model\\MakePostItem')->orderBy('ordering');
+        if(class_exists('\\App\\Models\\MakePostItem')){
+            return $this->hasMany('\\App\\Models\\MakePostItem')->orderBy('ordering');
         }
         return $this->hasMany(MakePostItem::class)->orderBy('ordering');
     }

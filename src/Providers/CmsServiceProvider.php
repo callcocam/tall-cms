@@ -106,6 +106,7 @@ class CmsServiceProvider extends ServiceProvider
         }
 
         if (class_exists(Livewire::class)) {
+            if ($this->app->runningInConsole()) return;
             $this->app->register(RouteServiceProvider::class);
             $this->registerComponentAutoDiscovery();
         }
@@ -127,6 +128,11 @@ class CmsServiceProvider extends ServiceProvider
         $this->publishViews();
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         if (class_exists(Livewire::class)) {
+            
+            Livewire::component('tall::admin.imports.csv-component',\Tall\Cms\Http\Livewire\Admin\Imports\CsvComponent::class);
+            Livewire::component('tall::admin.imports.csv-imports-component',\Tall\Cms\Http\Livewire\Admin\Imports\CsvImportsComponent::class);
+        
+
             Livewire::component( 'tall::admin.cms.makes.list-component', \Tall\Cms\Http\Livewire\Admin\Makes\ListComponent::class);
             Livewire::component( 'tall::admin.cms.makes.create-component', \Tall\Cms\Http\Livewire\Admin\Makes\CreateComponent::class);
             

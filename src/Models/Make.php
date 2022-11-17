@@ -18,16 +18,16 @@ class Make extends AbstractModel
     
     public function make_fields()
     {
-        if(class_exists('\\App\\Model\\MakeField')){
-            return $this->hasMany('\\App\\Model\\MakeField')->orderBy('ordering');
+        if(class_exists('\\App\\Models\\MakeField')){
+            return $this->hasMany('\\App\\Models\\MakeField')->orderBy('ordering');
         }
         return $this->hasMany(MakeField::class)->orderBy('ordering');
     }
     
     public function make_field_fks()
     {
-        if(class_exists('\\App\\Model\\MakeFieldFk')){
-            return $this->hasMany('\\App\\Model\\MakeFieldFk');
+        if(class_exists('\\App\\Models\\MakeFieldFk')){
+            return $this->hasMany('\\App\\Models\\MakeFieldFk');
         }
         return $this->hasMany(MakeFieldFk::class);
     }

@@ -30,7 +30,7 @@ class EditComponent extends FormComponent
             Field::make('Nome da tabela para o CRUD','table_name')->span(4),
             Field::make('Por padrão usa as views que estão dentro pasta makes','view')->span(4)->rules('required'),
             Field::make('Por padrão usa os components dentro de  \\Tall\\Cms\\Http\\Livewire\\Admin\\Makes','component')->rules('required'),
-            Field::radio('Situação doAPP','status', ['published','draft']),
+            Field::status('Situação doAPP','status_id', ['published','draft']),
             Field::textarea('Descrição do uso do APP','description'),
             Field::date('Data de criação','created_at')->span(6),
             Field::date('Última atualização', 'updated_at')->span(6),

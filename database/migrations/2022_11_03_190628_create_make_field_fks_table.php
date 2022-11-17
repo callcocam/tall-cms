@@ -21,6 +21,12 @@ return new class extends Migration
             $table->foreignUuid('make_id')->nullable()->constrained('makes')->cascadeOnDelete();        
             $table->foreignUuid('user_id')->nullable()->constrained('users')->cascadeOnDelete();   
 			$table->enum('foreign_type', array('hasOne','hasMany','belongsTo','belongsToMany'))->default('belongsTo');     
+            if (Schema::hasTable('statuses')) {           
+                $table->foreignUuid('status_id')->nullable()->constrained('statuses')->cascadeOnDelete();
+            }
+            else{
+                $table->enum('status_id',['draft','published'])->nullable()->comment("Situação")->default('published');
+            }
             $table->timestamps();
             $table->softDeletes(); 
         });

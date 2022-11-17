@@ -16,59 +16,6 @@ class ShowComponent extends LivewireShowComponent
 
     public function mount(Make $model)
     {
-        // dd($model->toArray());
-        // if(!$model->make_fields->count()){
-        //     $model->make_fields()->create([
-        //         'column_name'=>'id',
-        //         'column_type'=>'INT',
-        //         'column_nullable'=>0,
-        //         'column_primary'=>1,
-        //         'column_index'=>1,
-        //         'column_unique'=>1,
-        //         'ordering'=>1,
-        //     ]);
-        //     $model->make_fields()->create([
-        //         'column_name'=>'user_id',
-        //         'column_type'=>'INT',
-        //         'column_nullable'=>1,
-        //         'column_primary'=>0,
-        //         'column_index'=>1,
-        //         'column_unique'=>0,
-        //         'ordering'=>2,
-        //     ]);
-
-        //     $model->make_fields()->create([
-        //         'column_name'=>'created_at',
-        //         'column_type'=>'DATETIME',
-        //         'column_nullable'=>1,
-        //         'column_primary'=>0,
-        //         'column_index'=>0,
-        //         'column_unique'=>0,
-        //         'ordering'=>98,
-        //     ]);
-            
-        //     $model->make_fields()->create([
-        //         'column_name'=>'updated_at',
-        //         'column_type'=>'DATETIME',
-        //         'column_nullable'=>1,
-        //         'column_primary'=>0,
-        //         'column_index'=>0,
-        //         'column_unique'=>0,
-        //         'ordering'=>99,
-        //     ]);
-            
-        //     $model->make_fields()->create([
-        //         'column_name'=>'deleted_at',
-        //         'column_type'=>'DATETIME',
-        //         'column_nullable'=>1,
-        //         'column_primary'=>0,
-        //         'column_index'=>0,
-        //         'column_unique'=>0,
-        //         'ordering'=>100,
-        //     ]);
-        //     $model->append('make_fields');
-        // }
-
         $this->setFormProperties($model);
         
     }

@@ -8,7 +8,6 @@
 namespace Tall\Cms\Http\Livewire\Admin\Makes;
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Tall\Cms\Models\Make;
 use Tall\Orm\Http\Livewire\FormComponent;
 use Tall\Cms\Models\MakePost;
@@ -16,15 +15,11 @@ use Tall\Form\Fields\Field;
 
 class EditComponent extends FormComponent
 {
-    use AuthorizesRequests;
 
     public $title = "Editar";
-    public $path;
 
     public function mount(MakePost $model)
     {
-        $this->authorize(Route::currentRouteName());
-        $this->path = Route::current()->parameters;
         $this->setConfigProperties(Make::query()->whereIn('url', collect(Route::current()->parameters)->forget('model')->toArray())->first());   
         $this->setFormProperties($model);   
 

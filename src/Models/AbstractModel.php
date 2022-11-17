@@ -6,6 +6,7 @@
 */
 namespace Tall\Cms\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Tall\Cms\Scopes\UuidGenerate;
 use Tall\Sluggable\SlugOptions;
@@ -40,5 +41,18 @@ class AbstractModel extends Model
     public function isUser()
     {
         return true;
+    }
+
+    /**
+     * Interact with the user's first name.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function deletedAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn ($value) => is_string($value) ? null : $value ,
+        );
     }
 }

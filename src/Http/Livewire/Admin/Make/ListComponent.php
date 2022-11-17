@@ -9,6 +9,7 @@ namespace Tall\Cms\Http\Livewire\Admin\Make;
 use Illuminate\Support\Facades\Route;
 use Tall\Orm\Http\Livewire\TableComponent;
 use Tall\Cms\Models\Make;
+use Tall\Table\Fields\Column;
 
 class ListComponent extends TableComponent
 {
@@ -28,6 +29,23 @@ class ListComponent extends TableComponent
         return Make::query();
     }
 
+    
+    /**
+     * Função para trazer uma lista de colunas (opcional)
+     * Geralmente usada com um component de table dinamicas
+     * Voce pode sobrescrever essas informações no component filho 
+     */
+    public function columns(){
+        return [
+            Column::make('Name'),
+            Column::actions([
+                Column::make('Edit')->icon('pencil')->route('admin.makes.edit'),
+                Column::make('Delete')->icon('trash')->route('admin.makes.delete'),
+            ]),
+
+        ];
+    }
+    
     protected function view($component= "-component")
     {
         return 'tall::admin.make.list-component';
