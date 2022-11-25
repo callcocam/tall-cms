@@ -19,9 +19,7 @@ return new class extends Migration
             $table->text('slug', 255)->nullable();
             $table->integer('ordering')->nullable()->default('0');
             $table->foreignUuid('make_field_id')->nullable()->constrained('make_fields')->cascadeOnDelete();        
-            $table->foreignUuid('make_post_id')->nullable()->constrained('make_posts')->cascadeOnDelete();        
-            $table->foreignUuid('user_id')->nullable()->constrained('users')->cascadeOnDelete();        
-            $table->foreignUuid('tenant_id')->nullable()->constrained('tenants')->cascadeOnDelete();        
+            $table->foreignUuid('make_post_id')->nullable()->constrained('make_posts')->cascadeOnDelete();    
             $table->timestamps();
             $table->softDeletes();     
         });

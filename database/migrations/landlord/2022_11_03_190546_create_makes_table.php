@@ -24,14 +24,7 @@ return new class extends Migration
             $table->string('component_name', 255)->nullable();
             $table->string('view', 255)->default('makes')->nullable();
             $table->text('description')->nullable();
-            $table->integer('ordering')->nullable()->default('0');                    
-            if (Schema::hasTable('statuses')) {           
-                $table->foreignUuid('status_id')->nullable()->constrained('statuses')->cascadeOnDelete();
-            }
-            else{
-                $table->enum('status_id',['draft','published'])->nullable()->comment("Situação")->default('published');
-            }
-            $table->foreignUuid('user_id')->nullable()->constrained('users')->cascadeOnDelete();        
+            $table->integer('ordering')->nullable()->default('0');                       
             $table->timestamps();
             $table->softDeletes(); 
         });

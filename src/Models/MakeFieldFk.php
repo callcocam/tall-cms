@@ -8,10 +8,11 @@ namespace Tall\Cms\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tall\Orm\Models\AbstractModel;
+use Tall\Tenant\Concerns\UsesLandlordConnection;
 
 class MakeFieldFk extends AbstractModel
 {
-    use HasFactory;
+    use HasFactory, UsesLandlordConnection;
     
     protected $guarded = ['id'];
     protected $with = ['make','make_model','make_field_foreign','make_field_local'];

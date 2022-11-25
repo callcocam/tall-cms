@@ -24,7 +24,6 @@ Route::prefix('admin')
     'verified'
 ])->group(function(){
 
-    Route::get('', \Tall\Cms\Http\Livewire\Admin\DashboardComponent::class)->name('admin');
     Route::prefix('makes')->group(function () {
         Route::get('/', \Tall\Cms\Http\Livewire\Admin\Make\ListComponent::class)->name('admin.makes');
         Route::get('/cadastrar', \Tall\Cms\Http\Livewire\Admin\Make\CreateComponent::class)->name('admin.makes.create');

@@ -8,10 +8,11 @@ namespace Tall\Cms\Models;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Tall\Tenant\Concerns\UsesLandlordConnection;
 
-class MakeInport extends AbstractModel
+class MakeImport extends AbstractModel
 {
-    use HasFactory;
+    use HasFactory, UsesLandlordConnection;
     
     protected $guarded = ['id'];
 

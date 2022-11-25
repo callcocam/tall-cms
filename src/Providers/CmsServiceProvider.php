@@ -44,65 +44,65 @@ class CmsServiceProvider extends ServiceProvider
     public function register()
     {
         if(class_exists('App\Models\Make')){
-            $this->app->bind(Make::class, 'App\Models\Make');
+            $this->app->singleton(Make::class, 'App\Models\Make');
         }
         else{
-                $this->app->bind(Make::class, ModelsMake::class);
+            $this->app->singleton(Make::class, ModelsMake::class);
         }
         if(class_exists('App\Models\MakeField')){
-            $this->app->bind(MakeField::class, 'App\Models\MakeField');
+            $this->app->singleton(MakeField::class, 'App\Models\MakeField');
         }
         else{
-                $this->app->bind(MakeField::class, ModelsMakeField::class);
+            $this->app->singleton(MakeField::class, ModelsMakeField::class);
         }
 
         if(class_exists('App\Models\MakeFieldAttribute')){
-            $this->app->bind(MakeFieldAttribute::class, 'App\Models\MakeFieldAttribute');
+            $this->app->singleton(MakeFieldAttribute::class, 'App\Models\MakeFieldAttribute');
         }
         else{
-                $this->app->bind(MakeFieldAttribute::class, ModelsMakeFieldAttribute::class);
+            $this->app->singleton(MakeFieldAttribute::class, ModelsMakeFieldAttribute::class);
         }
 
         if(class_exists('App\Models\MakeFieldDb')){
-            $this->app->bind(MakeFieldDb::class, 'App\Models\MakeFieldDb');
+            $this->app->singleton(MakeFieldDb::class, 'App\Models\MakeFieldDb');
         }
         else{
-                $this->app->bind(MakeFieldDb::class, ModelsMakeFieldDb::class);
+            $this->app->singleton(MakeFieldDb::class, ModelsMakeFieldDb::class);
         }
 
         if(class_exists('App\Models\MakeFieldFk')){
-            $this->app->bind(MakeFieldFk::class, 'App\Models\MakeFieldFk');
+            $this->app->singleton(MakeFieldFk::class, 'App\Models\MakeFieldFk');
         }
         else{
-                $this->app->bind(MakeFieldFk::class, ModelsMakeFieldFk::class);
+            $this->app->singleton(MakeFieldFk::class, ModelsMakeFieldFk::class);
         }
 
         if(class_exists('App\Models\MakeFieldOption')){
-            $this->app->bind(MakeFieldOption::class, 'App\Models\MakeFieldOption');
+            $this->app->singleton(MakeFieldOption::class, 'App\Models\MakeFieldOption');
         }
         else{
-                $this->app->bind(MakeFieldOption::class, ModelsMakeFieldOption::class);
+            $this->app->singleton(MakeFieldOption::class, ModelsMakeFieldOption::class);
         }
 
         if(class_exists('App\Models\MakeFieldType')){
-            $this->app->bind(MakeFieldType::class, 'App\Models\MakeFieldType');
+            $this->app->singleton(MakeFieldType::class, 'App\Models\MakeFieldType');
         }
         else{
-                $this->app->bind(MakeFieldType::class, ModelsMakeFieldType::class);
+            $this->app->singleton(MakeFieldType::class, ModelsMakeFieldType::class);
         }
 
         if(class_exists('App\Models\MakePost')){
-            $this->app->bind(MakePost::class, 'App\Models\MakePost');
+            $this->app->singleton(MakePost::class, 'App\Models\MakePost');
         }
         else{
-                $this->app->bind(MakePost::class, ModelsMakePost::class);
+            $this->app->singleton(MakePost::class, ModelsMakePost::class);
         }
 
         if(class_exists('App\Models\MakePostItem')){
-            $this->app->bind(MakePostItem::class, 'App\Models\MakePostItem');
+            $this->app->singleton(MakePostItem::class, 'App\Models\MakePostItem');
         }
         else{
-                $this->app->bind(MakePostItem::class, ModelsMakePostItem::class);
+            $this->app->singleton(MakePostItem::class, ModelsMakePostItem::class);
         }
 
         if (class_exists(Livewire::class)) {
@@ -127,6 +127,11 @@ class CmsServiceProvider extends ServiceProvider
         $this->registerCommands();
         $this->publishViews();
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+
+        $this->publishes([
+            __DIR__.'/../../database/' => database_path(),
+        ], 'cms-database');
+
         if (class_exists(Livewire::class)) {
             
             Livewire::component('tall::admin.imports.csv-component',\Tall\Cms\Http\Livewire\Admin\Imports\CsvComponent::class);

@@ -7,14 +7,14 @@
 namespace Tall\Cms\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
-use Tall\Cms\Scopes\UuidGenerate;
 use Tall\Sluggable\SlugOptions;
 use Tall\Sluggable\HasSlug;
 
 class AbstractModel extends Model
 {
-    use UuidGenerate, HasSlug;
+    use HasUuids, HasSlug;
 
     public function __construct(array $attributes = [])
     {
