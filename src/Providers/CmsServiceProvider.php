@@ -126,7 +126,10 @@ class CmsServiceProvider extends ServiceProvider
 
         $this->registerCommands();
         $this->publishViews();
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        if(!is_dir(database_path('migrations/landlord'))){
+
+            $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        }
 
         $this->publishes([
             __DIR__.'/../../database/' => database_path(),
