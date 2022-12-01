@@ -1,4 +1,4 @@
-<x-tall-app-show-filters :showAttr="$showAttr">
+<x-tall-app-show :showAttr="$showAttr">
     <x-slot name='filters'>
         <x-slot name="actions">
            <x-tall-modal >
@@ -167,4 +167,4 @@
             </tr>
         </tbody>
     </table>
-</x-tall-app-show-filters>
+</x-tall-app-show>

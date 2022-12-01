@@ -7,6 +7,8 @@
 namespace Tall\Cms\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Tall\Cms\Contracts\IMakeField;
+use Tall\Cms\Contracts\IMakeFieldFk;
 use Tall\Orm\Models\AbstractModel;
 use Tall\Tenant\Concerns\UsesLandlordConnection;
 
@@ -19,18 +21,12 @@ class Make extends AbstractModel
     
     public function make_fields()
     {
-        if(class_exists('\\App\\Models\\MakeField')){
-            return $this->hasMany('\\App\\Models\\MakeField')->orderBy('ordering');
-        }
-        return $this->hasMany(MakeField::class)->orderBy('ordering');
+        return $this->hasMany(app(IMakeField::class))->orderBy('ordering');
     }
     
     public function make_field_fks()
     {
-        if(class_exists('\\App\\Models\\MakeFieldFk')){
-            return $this->hasMany('\\App\\Models\\MakeFieldFk');
-        }
-        return $this->hasMany(MakeFieldFk::class);
+        return $this->hasMany(app(IMakeFieldFk::class));
     }
     
     public function getMakeFieldsAttribute()

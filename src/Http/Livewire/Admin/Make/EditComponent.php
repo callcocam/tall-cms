@@ -6,16 +6,16 @@
 */
 namespace Tall\Cms\Http\Livewire\Admin\Make;
 
+use Tall\Cms\Contracts\IMake;
 use Tall\Form\Fields\Field;
 use Tall\Orm\Http\Livewire\FormComponent;
-use Tall\Cms\Models\Make;
 
 class EditComponent extends FormComponent
 {
     
-    public function mount(Make $model)
+    public function mount($model)
     {
-        $this->setFormProperties($model);
+        $this->setFormProperties(app(IMake::class)->find($model));
         
     }
     

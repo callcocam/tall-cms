@@ -6,17 +6,17 @@
 */
 namespace Tall\Cms\Http\Livewire\Admin\Make;
 
+use Tall\Cms\Contracts\IMake;
 use Tall\Orm\Core\Migrations\MigrateGenerator;
 use Tall\Orm\Http\Livewire\ShowComponent as LivewireShowComponent;
-use Tall\Cms\Models\Make;
 
 class ShowComponent extends LivewireShowComponent
 {
      use MigrateGenerator;
 
-    public function mount(Make $model)
+    public function mount($model)
     {
-        $this->setFormProperties($model);
+        $this->setFormProperties(app(IMake::class)->find($model));
         
     }
     

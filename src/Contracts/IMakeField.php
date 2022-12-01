@@ -7,7 +7,7 @@
 namespace Tall\Cms\Contracts;
 
 
-interface MakePost
+interface IMakeField
 {
   
 }

@@ -6,16 +6,17 @@
 */
 namespace Tall\Cms\Http\Livewire\Admin\Make;
 
+use Tall\Cms\Contracts\IMake;
+use Tall\Cms\Models\Make;
 use Tall\Form\Fields\Field;
 use Tall\Form\FormComponent;
-use Tall\Cms\Models\Make;
 
 class CreateComponent extends FormComponent
 {
 
     public function mount(Make $model)
     {
-        $this->setFormProperties($model);
+        $this->setFormProperties(app(IMake::class));
         data_set($this->form_data, 'created_at', now()->format("Y-m-d"));
         data_set($this->form_data, 'updated_at', now()->format("Y-m-d"));
         data_set($this->form_data, 'status', 'published');

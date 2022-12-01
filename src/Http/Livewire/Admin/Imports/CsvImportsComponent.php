@@ -8,7 +8,7 @@ namespace Tall\Cms\Http\Livewire\Admin\Imports;
 
 use Tall\Orm\Http\Livewire\ImportComponent;
 use Tall\Cms\Models\Make;
-use Tall\Cms\Models\MakeInport;
+use Tall\Cms\Models\MakeImport;
 
 class CsvImportsComponent extends ImportComponent
 {
@@ -19,7 +19,7 @@ class CsvImportsComponent extends ImportComponent
         
     }
 
-    public function deleteImport(MakeInport $model)
+    public function deleteImport(MakeImport $model)
     {
         $model->forceDelete();
     }

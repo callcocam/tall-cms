@@ -6,7 +6,7 @@
 */
 namespace Tall\Cms\Http\Livewire\Admin\Imports;
 
-use App\Jobs\ImportCsv;
+use Tall\Cms\Jobs\ImportCsv;
 use Illuminate\Support\Facades\Bus;
 use Livewire\WithFileUploads;
 use Tall\Cms\Models\Make;

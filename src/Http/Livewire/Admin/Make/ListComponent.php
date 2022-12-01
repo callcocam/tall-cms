@@ -7,6 +7,7 @@
 namespace Tall\Cms\Http\Livewire\Admin\Make;
 
 use Illuminate\Support\Facades\Route;
+use Tall\Cms\Contracts\IMake;
 use Tall\Orm\Http\Livewire\TableComponent;
 use Tall\Cms\Models\Make;
 use Tall\Table\Fields\Column;
@@ -26,7 +27,7 @@ class ListComponent extends TableComponent
     }
     protected function query()
     {
-        return Make::query();
+        return app()->make(IMake::class)::query();
     }
 
     
@@ -40,6 +41,7 @@ class ListComponent extends TableComponent
             Column::make('Name'),
             Column::actions([
                 Column::make('Edit')->icon('pencil')->route('admin.makes.edit'),
+                Column::make('Show')->icon('eye')->route('admin.makes.show'),
                 Column::make('Delete')->icon('trash')->route('admin.makes.delete'),
             ]),
 

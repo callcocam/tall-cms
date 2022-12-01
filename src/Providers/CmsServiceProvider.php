@@ -15,24 +15,24 @@ use Tall\Cms\Console\Commands\TallMakeCommand;
 use Tall\Cms\LivewireComponentsFinder as LivewireLivewireComponentsFinder;
 use Tall\Theme\Providers\ThemeServiceProvider;
 use Livewire\Livewire;
-use Tall\Cms\Contracts\Make;
-use Tall\Cms\Contracts\MakeField;
-use Tall\Cms\Contracts\MakeFieldAttribute;
-use Tall\Cms\Contracts\MakeFieldDb;
-use Tall\Cms\Contracts\MakeFieldFk;
-use Tall\Cms\Contracts\MakeFieldOption;
-use Tall\Cms\Contracts\MakeFieldType;
-use Tall\Cms\Contracts\MakePost;
-use Tall\Cms\Contracts\MakePostItem;
-use Tall\Cms\Models\Make as ModelsMake;
-use Tall\Cms\Models\MakeField as ModelsMakeField;
-use Tall\Cms\Models\MakeFieldAttribute as ModelsMakeFieldAttribute;
-use Tall\Cms\Models\MakeFieldDb as ModelsMakeFieldDb;
-use Tall\Cms\Models\MakeFieldFk as ModelsMakeFieldFk;
-use Tall\Cms\Models\MakeFieldOption as ModelsMakeFieldOption;
-use Tall\Cms\Models\MakeFieldType as ModelsMakeFieldType;
-use Tall\Cms\Models\MakePost as ModelsMakePost;
-use Tall\Cms\Models\MakePostItem as ModelsMakePostItem;
+use Tall\Cms\Contracts\IMake;
+use Tall\Cms\Contracts\IMakeField;
+use Tall\Cms\Contracts\IMakeFieldAttribute;
+use Tall\Cms\Contracts\IMakeFieldDb;
+use Tall\Cms\Contracts\IMakeFieldFk;
+use Tall\Cms\Contracts\IMakeFieldOption;
+use Tall\Cms\Contracts\IMakeFieldType;
+use Tall\Cms\Contracts\IMakePost;
+use Tall\Cms\Contracts\IMakePostItem;
+use Tall\Cms\Models\Make;
+use Tall\Cms\Models\MakeField;
+use Tall\Cms\Models\MakeFieldAttribute;
+use Tall\Cms\Models\MakeFieldDb;
+use Tall\Cms\Models\MakeFieldFk;
+use Tall\Cms\Models\MakeFieldOption;
+use Tall\Cms\Models\MakeFieldType;
+use Tall\Cms\Models\MakePost;
+use Tall\Cms\Models\MakePostItem;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -44,65 +44,65 @@ class CmsServiceProvider extends ServiceProvider
     public function register()
     {
         if(class_exists('App\Models\Make')){
-            $this->app->singleton(Make::class, 'App\Models\Make');
+            $this->app->singleton(IMake::class, 'App\Models\Make');
         }
         else{
-            $this->app->singleton(Make::class, ModelsMake::class);
+            $this->app->singleton(IMake::class, Make::class);
         }
         if(class_exists('App\Models\MakeField')){
-            $this->app->singleton(MakeField::class, 'App\Models\MakeField');
+            $this->app->singleton(IMakeField::class, 'App\Models\MakeField');
         }
         else{
-            $this->app->singleton(MakeField::class, ModelsMakeField::class);
+            $this->app->singleton(IMakeField::class, MakeField::class);
         }
 
         if(class_exists('App\Models\MakeFieldAttribute')){
-            $this->app->singleton(MakeFieldAttribute::class, 'App\Models\MakeFieldAttribute');
+            $this->app->singleton(IMakeFieldAttribute::class, 'App\Models\MakeFieldAttribute');
         }
         else{
-            $this->app->singleton(MakeFieldAttribute::class, ModelsMakeFieldAttribute::class);
+            $this->app->singleton(IMakeFieldAttribute::class, MakeFieldAttribute::class);
         }
 
         if(class_exists('App\Models\MakeFieldDb')){
-            $this->app->singleton(MakeFieldDb::class, 'App\Models\MakeFieldDb');
+            $this->app->singleton(IMakeFieldDb::class, 'App\Models\MakeFieldDb');
         }
         else{
-            $this->app->singleton(MakeFieldDb::class, ModelsMakeFieldDb::class);
+            $this->app->singleton(IMakeFieldDb::class, MakeFieldDb::class);
         }
 
         if(class_exists('App\Models\MakeFieldFk')){
-            $this->app->singleton(MakeFieldFk::class, 'App\Models\MakeFieldFk');
+            $this->app->singleton(IMakeFieldFk::class, 'App\Models\MakeFieldFk');
         }
         else{
-            $this->app->singleton(MakeFieldFk::class, ModelsMakeFieldFk::class);
+            $this->app->singleton(IMakeFieldFk::class, MakeFieldFk::class);
         }
 
         if(class_exists('App\Models\MakeFieldOption')){
-            $this->app->singleton(MakeFieldOption::class, 'App\Models\MakeFieldOption');
+            $this->app->singleton(IMakeFieldOption::class, 'App\Models\MakeFieldOption');
         }
         else{
-            $this->app->singleton(MakeFieldOption::class, ModelsMakeFieldOption::class);
+            $this->app->singleton(IMakeFieldOption::class, MakeFieldOption::class);
         }
 
         if(class_exists('App\Models\MakeFieldType')){
-            $this->app->singleton(MakeFieldType::class, 'App\Models\MakeFieldType');
+            $this->app->singleton(IMakeFieldType::class, 'App\Models\MakeFieldType');
         }
         else{
-            $this->app->singleton(MakeFieldType::class, ModelsMakeFieldType::class);
+            $this->app->singleton(IMakeFieldType::class, MakeFieldType::class);
         }
 
         if(class_exists('App\Models\MakePost')){
-            $this->app->singleton(MakePost::class, 'App\Models\MakePost');
+            $this->app->singleton(IMakePost::class, 'App\Models\MakePost');
         }
         else{
-            $this->app->singleton(MakePost::class, ModelsMakePost::class);
+            $this->app->singleton(IMakePost::class, MakePost::class);
         }
 
         if(class_exists('App\Models\MakePostItem')){
-            $this->app->singleton(MakePostItem::class, 'App\Models\MakePostItem');
+            $this->app->singleton(IMakePostItem::class, 'App\Models\MakePostItem');
         }
         else{
-            $this->app->singleton(MakePostItem::class, ModelsMakePostItem::class);
+            $this->app->singleton(IMakePostItem::class, MakePostItem::class);
         }
 
         if (class_exists(Livewire::class)) {
@@ -149,7 +149,7 @@ class CmsServiceProvider extends ServiceProvider
             Livewire::component( 'tall::admin.cms.make.create-component', \Tall\Cms\Http\Livewire\Admin\Make\CreateComponent::class);
             Livewire::component( 'tall::admin.cms.make.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\EditComponent::class);
             Livewire::component( 'tall::admin.cms.make.show-component', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class);
-            Livewire::component( 'tall::admin.cms.make.delete-component', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class);
+            Livewire::component( 'tall::admin.cms.make.delete-component', \Tall\Cms\Http\Livewire\Admin\Make\DeleteComponent::class);
             
             Livewire::component( 'tall::admin.cms.make.field.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\CreateComponent::class);
             Livewire::component( 'tall::admin.cms.make.field.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\EditComponent::class);

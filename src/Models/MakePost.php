@@ -7,6 +7,7 @@
 namespace Tall\Cms\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Tall\Cms\Contracts\IMakePostItem;
 use Tall\Orm\Models\AbstractModel;
 use Tall\Tenant\Concerns\UsesLandlordConnection;
 
@@ -21,10 +22,7 @@ class MakePost extends AbstractModel
 
     public function make_post_items()
     {
-        if(class_exists('\\App\\Models\\MakePostItem')){
-            return $this->hasMany('\\App\\Models\\MakePostItem')->orderBy('ordering');
-        }
-        return $this->hasMany(MakePostItem::class)->orderBy('ordering');
+        return $this->hasMany(app(IMakePostItem::class))->orderBy('ordering');
     }
 
     public function getPostsAttribute()

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Livewire\LivewireComponentsFinder;
-use Tall\Cms\Contracts\Make;
+use Tall\Cms\Contracts\IMake;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ Route::prefix('admin')
     });
 
 
-    $makes = app(Make::class)->query()
+    $makes = app(IMake::class)->query()
     // ->where('status_id', 'published')
     ->whereNotNull('route')->get();
     

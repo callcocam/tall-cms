@@ -7,6 +7,11 @@
 namespace Tall\Cms\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Tall\Cms\Contracts\IMakeFieldAttribute;
+use Tall\Cms\Contracts\IMakeFieldDb;
+use Tall\Cms\Contracts\IMakeFieldFk;
+use Tall\Cms\Contracts\IMakeFieldOption;
+use Tall\Cms\Contracts\IMakeFieldType;
 use Tall\Orm\Models\AbstractModel;
 use Tall\Tenant\Concerns\UsesLandlordConnection;
 
@@ -19,42 +24,27 @@ class MakeField extends AbstractModel
 
     public function make_field_type()
     {
-        if(class_exists('\\App\\Models\\MakeFieldType')){
-            return $this->belongsTo('\\App\\Models\\MakeFieldType');
-        }
-        return $this->belongsTo(MakeFieldType::class);
+        return $this->belongsTo(app(IMakeFieldType::class));
     }
 
     public function make_field_attributes()
     {
-        if(class_exists('\\App\\Models\\MakeFieldAttribute')){
-            return $this->hasMany('\\App\\Models\\MakeFieldAttribute');
-        }
-        return $this->hasMany(MakeFieldAttribute::class);
+        return $this->hasMany(app(IMakeFieldAttribute::class));
     }
 
     public function make_field_options()
     {
-        if(class_exists('\\App\\Models\\MakeFieldOption')){
-            return $this->hasMany('\\App\\Models\\MakeFieldOption');
-        }
-        return $this->hasMany(MakeFieldOption::class);
+        return $this->hasMany(app(IMakeFieldOption::class));
     }
 
     public function make_field_ob()
     {
-        if(class_exists('\\App\\Models\\MakeFieldDb')){
-            return $this->hasMany('\\App\\Models\\MakeFieldDb');
-        }
-        return $this->hasMany(MakeFieldDb::class);
+        return $this->hasMany(app(IMakeFieldDb::class));
     }
 
     public function make_field_fk()
     {
-        if(class_exists('\\App\\Models\\MakeFieldFk')){
-            return $this->hasMany('\\App\\Models\\MakeFieldFk');
-        }
-        return $this->hasMany(MakeFieldFk::class);
+        return $this->hasMany(app(IMakeFieldFk::class));
     }
 
     public function slugTo()
