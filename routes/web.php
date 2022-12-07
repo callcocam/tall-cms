@@ -30,7 +30,15 @@ Route::prefix('admin')
         Route::get('/{model}/editar', \Tall\Cms\Http\Livewire\Admin\Make\EditComponent::class)->name('admin.makes.edit');
         Route::get('/{model}/visualizar', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class)->name('admin.makes.show');
         Route::get('/{model}/excluir', \Tall\Cms\Http\Livewire\Admin\Make\DeleteComponent::class)->name('admin.makes.delete');
-    });
+  
+        Route::prefix('field/types')->group(function () {
+            Route::get('/', \Tall\Cms\Http\Livewire\Admin\Make\Types\ListComponent::class)->name('admin.makes-field-types');
+            Route::get('/cadastrar', \Tall\Cms\Http\Livewire\Admin\Make\Types\CreateComponent::class)->name('admin.makes-field-types.create');
+            Route::get('/{model}/editar', \Tall\Cms\Http\Livewire\Admin\Make\Types\EditComponent::class)->name('admin.makes-field-types.edit');
+            Route::get('/{model}/visualizar', \Tall\Cms\Http\Livewire\Admin\Make\Types\ShowComponent::class)->name('admin.makes-field-types.show');
+            Route::get('/{model}/excluir', \Tall\Cms\Http\Livewire\Admin\Make\Types\DeleteComponent::class)->name('admin.makes-field-types.delete');
+        });
+  });
 
 
     $makes = app(IMake::class)->query()
@@ -42,7 +50,8 @@ Route::prefix('admin')
             Route::prefix($make->view)->group(function() use($make) {     
                     $model = Str::slug($make->model);      
                     if(class_exists(sprintf("%s\ListComponent", $make->component))){
-                        Route::get(sprintf("{%s}",$model ),sprintf("%s\ListComponent", $make->component))->name($make->route); 
+                        
+                        Route::get(sprintf("{%s}",$model ),sprintf("%s\ListComponent", $make->component))->name( $make->route); 
                     }
                     if(class_exists(sprintf("%s\CreateComponent", $make->component))){
                         Route::get(sprintf("{%s}/cadastrar",$model ),sprintf("%s\CreateComponent", $make->component))->name(sprintf("%s.create", $make->route));    
@@ -58,23 +67,23 @@ Route::prefix('admin')
     }
 
 
-    if(method_exists(LivewireComponentsFinder::class, 'load')){
+    // if(method_exists(LivewireComponentsFinder::class, 'load')){
 
-        $manifests =  app(LivewireComponentsFinder::class)->load();
+    //     $manifests =  app(LivewireComponentsFinder::class)->load();
 
-        if($manifests){
+    //     if($manifests){
     
-            foreach($manifests as $manifest){
+    //         foreach($manifests as $manifest){
     
-                if (method_exists($manifest, 'route')) {
+    //             if (method_exists($manifest, 'route')) {
     
-                    app($manifest)->route();
+    //                 app($manifest)->route();
     
-                }
+    //             }
     
-            }
+    //         }
     
-        }
-    }
+    //     }
+    // }
 
 });

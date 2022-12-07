@@ -37,14 +37,14 @@ class MakeField extends AbstractModel
         return $this->hasMany(app(IMakeFieldOption::class));
     }
 
-    public function make_field_ob()
+    public function make_field_db()
     {
-        return $this->hasMany(app(IMakeFieldDb::class));
+        return $this->belongsTo(app(IMakeFieldDb::class));
     }
 
     public function make_field_fk()
     {
-        return $this->hasMany(app(IMakeFieldFk::class));
+        return $this->belongsTo(app(IMakeFieldFk::class));
     }
 
     public function slugTo()

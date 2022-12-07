@@ -23,7 +23,11 @@ return new class extends Migration
             $table->string('component', 255)->nullable();
             $table->string('component_name', 255)->nullable();
             $table->string('view', 255)->default('makes')->nullable();
-            $table->text('description')->nullable();
+            $table->text('description')->nullable();            
+            $table->integer('genarate_content')->nullable()->default('0');                    
+            $table->integer('genarate_author')->nullable()->default('0');                
+            $table->integer('genarate_timestamps')->nullable()->default('0');                
+            $table->integer('genarate_status')->nullable()->default('0');                
             $table->integer('ordering')->nullable()->default('0');                       
             $table->timestamps();
             $table->softDeletes(); 

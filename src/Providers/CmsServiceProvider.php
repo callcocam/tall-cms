@@ -151,6 +151,13 @@ class CmsServiceProvider extends ServiceProvider
             Livewire::component( 'tall::admin.cms.make.show-component', \Tall\Cms\Http\Livewire\Admin\Make\ShowComponent::class);
             Livewire::component( 'tall::admin.cms.make.delete-component', \Tall\Cms\Http\Livewire\Admin\Make\DeleteComponent::class);
             
+            
+            Livewire::component( 'tall::admin.cms.make-field-types.list-component', \Tall\Cms\Http\Livewire\Admin\Make\Types\ListComponent::class);
+            Livewire::component( 'tall::admin.cms.make-field-types.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Types\CreateComponent::class);
+            Livewire::component( 'tall::admin.cms.make-field-types.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Types\EditComponent::class);
+            Livewire::component( 'tall::admin.cms.make-field-types.show-component', \Tall\Cms\Http\Livewire\Admin\Make\Types\ShowComponent::class);
+            Livewire::component( 'tall::admin.cms.make-field-types.delete-component', \Tall\Cms\Http\Livewire\Admin\Make\Types\DeleteComponent::class);
+            
             Livewire::component( 'tall::admin.cms.make.field.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\CreateComponent::class);
             Livewire::component( 'tall::admin.cms.make.field.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\EditComponent::class);
             
@@ -159,6 +166,8 @@ class CmsServiceProvider extends ServiceProvider
             
             Livewire::component( 'tall::admin.cms.make.field.fk.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Fk\CreateComponent::class);
             Livewire::component( 'tall::admin.cms.make.field.fk.edit-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Fk\EditComponent::class);
+           
+            Livewire::component( 'tall::admin.make.field.type.create-component', \Tall\Cms\Http\Livewire\Admin\Make\Field\Type\CreateComponent::class);
         }
         
     }

@@ -21,7 +21,7 @@ class EditComponent extends FormComponent
     public function mount(MakeFieldFk $make_field_fk)
     {
         // dd($make_field_fk->toArray());
-        $this->setFormProperties($make_field_fk);
+        $this->setFormProperties($make_field_fk, false);
     }
 
         /**

@@ -6,8 +6,9 @@
 */
 namespace Tall\Cms\Http\Livewire\Admin\Make\Field;
 
+use Illuminate\Support\Facades\Route;
 use Tall\Form\Fields\Field;
-use Tall\Form\FormComponent;
+use Tall\Cms\Http\Livewire\FormComponent;
 use Tall\Cms\Models\Make;
 use Tall\Cms\Models\MakeFieldType;
 
@@ -18,10 +19,10 @@ class CreateComponent extends FormComponent
 
     public function mount(Make $model)
     {
-        $this->setFormProperties($model);
+        $this->setFormProperties($model, false);
        
     }
-
+ 
      /**
      * Monta um array de campos (opcional)
      * Voce pode sobrescrever essas informações no component filho
@@ -30,11 +31,6 @@ class CreateComponent extends FormComponent
      */
     protected function fields()
     {
-        // $oderings = data_get($this->model, 'make_fields', []);
-        // $data=[];
-        // foreach ($oderings as $value) {
-        //     $data[$value->ordering] = $value->column_name;
-        // }
         return [
             Field::make('column_name','make_fields.column_name')->rules('required'),
             Field::select('column_type','make_fields.make_field_type_id', MakeFieldType::query()->pluck('name','id')->toArray())->rules('required'),
@@ -112,5 +108,15 @@ class CreateComponent extends FormComponent
     protected function view($component= "-component")
     {
         return 'tall::admin.make.field.create-component';
+    }
+
+
+     /**
+     * Parametros (array) de informações
+     * Usado para atualizar as informações do component depois de um novo cadastro do registro
+     * Voce pode sobrescrever essas informações no component filho
+     */
+    public function refreshCreate($data=[]){
+        $this->showModal = false;
     }
 }

@@ -17,7 +17,7 @@ class CreateComponent extends FormComponent
 
     public function mount(MakeField $model)
     {
-        $this->setFormProperties($model);
+        $this->setFormProperties($model, false);
     }
 
      /**

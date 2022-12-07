@@ -14,7 +14,7 @@ class EditComponent extends FormComponent
     
     public function mount(MakeFieldAttribute $model)
     {
-        $this->setFormProperties($model);
+        $this->setFormProperties($model, false);
         
     }
     

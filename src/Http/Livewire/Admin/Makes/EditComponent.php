@@ -21,6 +21,7 @@ class EditComponent extends FormComponent
     public function mount(MakePost $model)
     {
         $this->setConfigProperties(Make::query()->whereIn('url', collect(Route::current()->parameters)->forget('model')->toArray())->first());   
+      
         $this->setFormProperties($model);   
 
     }
@@ -30,10 +31,10 @@ class EditComponent extends FormComponent
      * O resulta final será algo do tipo form_data.name='Informação vinda do banco'
      * Voce pode sobrescrever essas informações no component filho
      */
-    protected function setFormProperties($model = null, $currentRouteName=null)
+    protected function setFormProperties($model = null, $moke=true)
     {
 
-        parent::setFormProperties($model, $currentRouteName);
+        parent::setFormProperties($model, $moke);
         if ($model) {
             $this->form_data = data_get($model, 'posts');
         }

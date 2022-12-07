@@ -1,4 +1,34 @@
-<tbody>
+<table class="w-full text-left">
+    <thead>
+        <tr>
+            <th
+                class="whitespace-nowrap bg-slate-200 px-2 py-1 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100">
+                {{ __('Nome') }}
+            </th>
+            <th
+                class="whitespace-nowrap bg-slate-200 px-2 py-1 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100">
+                {{ __('Tipo') }}
+            </th>
+            <th
+                class="whitespace-nowrap bg-slate-200 px-2 py-1 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100">
+                {{ __('Visivel') }}
+            </th>
+            <th
+                class="whitespace-nowrap bg-slate-200 px-2 py-1 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100">
+                {{ __('Largura') }}
+            </th>
+            {{-- <th
+                class="whitespace-nowrap bg-slate-200 px-2 py-1 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100">
+                {{ __('Ordem') }}
+            </th> --}}
+            <th
+                class="whitespace-nowrap bg-slate-200 px-2 py-1 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100">
+                <x-tall-app-make-modal btnLabel="Adicionar Campos">
+                    @livewire('tall::admin.make.field.type.create-component')
+                </x-tall-app-make-modal>
+            </th>
+        </tr>
+    </thead>
     <tr>
         <td colspan="100">
             <x-tall-errors :$errors :$fields />
@@ -18,48 +48,35 @@
         </td>
     </tr>
     <tr class="border-y border-transparent">
-        <td class="whitespace-nowrap px-4 py-1 sm:px-5">
+        <td class="px-1 py-1">
             @if ($field = form('make_fields.column_name', $fields))
                 <x-dynamic-component component="tall-{{ $field->component }}" :field="$field" />
                 {{-- <x-tall-input-error :for="$field->key" /> --}}
             @endif
         </td>
-        <td class="whitespace-nowrap px-4 py-1 sm:px-5">
+        <td class="px-1 py-1">
             @if ($field = form('make_fields.make_field_type_id', $fields))
                 <x-dynamic-component component="tall-{{ $field->component }}" :field="$field" />
                 {{-- <x-tall-input-error :for="$field->key" /> --}}
             @endif
         </td>
-        <td class="whitespace-nowrap px-4 py-1 sm:px-5">
+        <td class="px-1 py-1">
             @if ($field = form('make_fields.column_visible', $fields))
                 <x-dynamic-component component="tall-{{ $field->component }}" :field="$field" />
                 {{-- <x-tall-input-error :for="$field->key" /> --}}
             @endif
         </td>
-        <td class="whitespace-nowrap px-4 py-1 sm:px-5">
+        <td class="px-1 py-1">
             @if ($field = form('make_fields.column_width', $fields))
                 <x-dynamic-component component="tall-{{ $field->component }}" :field="$field" />
                 {{-- <x-tall-input-error :for="$field->key" /> --}}
             @endif
         </td>
-        <td class="whitespace-nowrap px-1 py-0 sm:px-5 draggable-handler text-center">
-            @if ($field = form('ordering', $fields))
-                <x-tall-icon name="arrows-expand" />
-            @endif
-        </td>
-        <td class="whitespace-nowrap px-4 py-1 sm:px-5">
-
-            @if ($make_field_attributes)
-                <button @click="expanded = !expanded"
-                    class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                    <i :class="expanded && '-rotate-180'" class="fas fa-chevron-down text-sm transition-transform"></i>
-                </button>
-            @else
-                <button wire:click='saveAndStay'
-                    class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                    <x-tall-icon name="plus" />
-                </button>
-            @endif
+        <td class="px-1 py-1">
+            <button wire:click='saveAndStay'
+                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                <x-tall-icon name="plus" />
+            </button>
         </td>
     </tr>
-</tbody>
+</table>

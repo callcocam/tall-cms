@@ -7,8 +7,8 @@
 namespace Tall\Cms\Http\Livewire\Admin\Make\Field;
 
 use Tall\Form\Fields\Field;
-use Tall\Orm\Http\Livewire\FormComponent;
 use Tall\Cms\Models\MakeField;
+use Tall\Cms\Http\Livewire\FormComponent;
 use Tall\Cms\Models\MakeFieldType;
 
 class EditComponent extends FormComponent
@@ -18,7 +18,7 @@ class EditComponent extends FormComponent
 
     public function mount(MakeField $make_field)
     {
-        $this->setFormProperties($make_field);
+        $this->setFormProperties($make_field, false);
     }
       /**
      * Monta um array de campos (opcional)

@@ -7,10 +7,12 @@
 
 namespace Tall\Cms\Http\Livewire\Admin\Makes;
 
+use Illuminate\Support\Facades\Route;
 use Tall\Orm\Http\Livewire\FormComponent;
 use Tall\Cms\Models\Make;
 use Tall\Cms\Models\MakePost;
 use Tall\Form\Fields\Field;
+use Illuminate\Support\{Str ,Arr};
 
 class CreateComponent extends FormComponent
 {
@@ -20,10 +22,46 @@ class CreateComponent extends FormComponent
 
     public function mount(MakePost $model)
     {
-        $this->setConfigProperties(Make::query()->where('url', $this->path)->first());   
+        $this->setConfigProperties(Make::query()->whereIn('url', Route::current()->parameters)->first());   
+
         $this->setFormProperties($model);   
     }
+   /**
+     * Carrega os valores iniciais do component no carrgamento do messmo
+     * O resulta final será algo do tipo form_data.name='Informação vinda do banco'
+     * Voce pode sobrescrever essas informações no component filho
+     */
+    protected function setFormProperties($model = null, $moke=true)
+    {
+        $this->authorize($this->permission);
+      
+        $this->model = $model;
 
+        if ($model) {
+            $this->form_data = $model->toArray();
+        }
+
+        $this->setUp(  Route::currentRouteName() );
+
+    }
+     /**
+     * Rota para editar um registro
+     * Voce deve sobrescrever essas informações no component filho (opcional)
+     */
+    protected function route_list()
+    {
+        if($config = $this->config){
+            if(Route::has($config->route)){
+                $params=[];
+                if($url = $this->config->url){
+                    $params[Str::lower($this->config->model)] = $url;
+                }
+                return route($config->route, $params);
+            }              
+         }
+        return null;
+    }
+    
       /**
      * Monta um array de campos (opcional)
      * Voce pode sobrescrever essas informações no component filho

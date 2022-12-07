@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('make_posts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('ordering')->nullable()->default('0');                    
+            $table->integer('ordering')->nullable()->default('0');           
             $table->foreignUuid('make_id')->nullable()->constrained('makes')->cascadeOnDelete();        
             $table->timestamps();
             $table->softDeletes();     

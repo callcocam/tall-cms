@@ -36,5 +36,10 @@
             <li>{{ data_get($showAttr, 'active', 'Active') }}</li>
         </ul>
     </div>
-    {{ $slot }}
+    <div class="flex flex-col">
+        @isset($filters)
+            {{ $filters }}
+        @endisset
+        {{ $slot }}
+    </div>
 </div>
